@@ -1,3 +1,5 @@
+$("#botao-placar").click(mostraPlacar);
+
 function inserePlacar() {
     var corpoTabela = $(".placar").find("tbody");
     var usuario = "Douglas"
@@ -31,5 +33,24 @@ function novaLinha(usuario, palavras) {
 
 function removeLinha() {
     event.preventDefault();
-    $(this).parent().parent().remove();
+    //$(this).parent().parent().remove(); *Remove a linha td
+    const linha = $(this).parent().parent();
+    linha.fadeOut(); //*fadeOut apenas diminui a opacidade, não remove o elemento do local
+    //linha.remove(700); * De acordo com a documentação do Jquery, usar um tempo no remove é um metodo errado
+
+    setTimeout(() => { //*criar um tempo
+        linha.remove()
+    }, 500);
+
 }
+
+
+function mostraPlacar() {
+    //$(".placar").show();  *Mostrar, só que aparece de modo bruto
+    //$(".placar").hide(); * Esconder, só que esconde de modo bruto
+    //$(".placar").toggle(); *Mostrar e Esconder, só que aparece e esconde de modo bruto
+    //$(".placar").slidedown(1500); * Mostrar mais suavel, dentro do (tempo) 
+    //$(".placar").slideup(1500); * Esconde mais suavel, dentro do (tempo) 
+    $(".placar").stop().slideToggle(500); // * Mostrar mais suavel, dentro do (tempo) 
+}
+
